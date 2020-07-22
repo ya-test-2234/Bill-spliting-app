@@ -26,16 +26,15 @@ while rerun != "no":
 				print("please enter a number")
 				continue
 			for_tipping_total = total_due
-			
+			break
 		
-			while True:
-			
-				total_persons = float(input("For how many people? "))
-				if total_persons != float(total_persons):
-					print("please enter a number")
-					continue
-				for_tipping_persons = total_persons
-				break
+		while True:
+		
+			total_persons = float(input("For how many people? "))
+			if total_persons != float(total_persons):
+				print("please enter a number")
+				continue
+			for_tipping_persons = total_persons
 			break
 		
 		amount_due = split_check(total_due,total_persons) 
