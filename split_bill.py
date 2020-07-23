@@ -3,23 +3,21 @@ import math
 
 def get_amount_due ():
 	
-	while True:
+	total = float(input("Enter total: "))
+	
+	while total <= 0:
+		total = float(input("\nBill cannot be negative or zero, please enter a valid amount: "))
 		
-		total = float(input("Enter total: "))
 		
-		while total <= 0:
-			total = float(input("\nBill cannot be negative or zero, please enter a valid amount: "))
-			
-			
-		num_persons = float(input("\nEnter total persons: "))
+	num_persons = float(input("\nEnter total persons: "))
+	
+	while num_persons <= 1 or num_persons != int(num_persons):
+		num_persons = float(input("\nPlease enter a correct number of people: "))
+	
+	amount_due = math.ceil (total/num_persons)
+	
+	change = amount_due * num_persons - total
 		
-		while num_persons <= 1 or num_persons != int(num_persons):
-			num_persons = float(input("\nPlease enter a correct number of people: "))
-		
-		amount_due = math.ceil (total/num_persons)
-		
-		change = amount_due * num_persons - total
-		break
 	return amount_due, change #returns tuple
 
 rerun = 'yes'
