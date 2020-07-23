@@ -1,57 +1,38 @@
 import math
 
-def split_check(total, num_of_people): 
+
+def get_amount_due ():
 	
-	if num_of_people != int(num_of_people):
-		raise ValueError ("people cannot be fragmented")
-	
-	if num_of_people <=1: 
-		raise ValueError ("more than one persone is required to split the bill") 
-	
-	if total <=0: 
-		raise ValueError ("Bill cannot be negative or zero")
+	while True:
 		
-	return math.ceil (total / num_of_people) 
-
-rerun = 0
-
-while rerun != "no":
-
-	try: 
+		total = float(input("Enter total: "))
 		
-		while True:
+		while total <= 0:
+			total = float(input("\nBill cannot be negative or zero, please enter a valid amount: "))
 			
-			total_due = float(input("Please enter the total: "))
-			if total_due != float(total_due):
-				print("please enter a number")
-				continue
-			for_tipping_total = total_due
-			break
+			
+		num_persons = float(input("\nEnter total persons: "))
 		
-		while True:
+		while num_persons <= 1 or num_persons != int(num_persons):
+			num_persons = float(input("\nPlease enter a correct number of people: "))
 		
-			total_persons = float(input("For how many people? "))
-			if total_persons != float(total_persons):
-				print("please enter a number")
-				continue
-			for_tipping_persons = total_persons
-			break
+		amount_due = math.ceil (total/num_persons)
 		
-		amount_due = split_check(total_due,total_persons) 
-		
-		tip = float((amount_due*for_tipping_persons)-for_tipping_total)
-		tip_rounded= "{:.2f}".format(tip) #makes the "tip" float prints to two decimal places
-		
-	except ValueError as err: 
-		print ("please enter a valid value")
-		print ("({})".format(err))
-		continue
-	
-		
-	else: 
-		print("Each person owes ${}".format(amount_due),  "and the tip will be ${}".format(tip_rounded))
-		
-	rerun = input("would you like to split another bill?(yes/no) ")
+		change = amount_due * num_persons - total
+		break
+	return amount_due, change #returns tuple
 
-else:
-	print ("thank you for using our app")
+rerun = 'yes'
+while rerun.lower() == 'yes':
+	
+	amount_due, change = get_amount_due() #unpack tuple
+	
+	print(f"\nEach person owes {amount_due}$ and the change will be {change:.2f}$\n")
+	
+	rerun = input("Would you like to split another bill? [Yes/No]\n") 
+	
+	while rerun.lower() != 'yes' and rerun.lower() != 'no': #coarse valid input
+	
+		rerun = input("Would you like to split another bill? [Yes/No]\n")
+
+print ("thank you for using our app")
