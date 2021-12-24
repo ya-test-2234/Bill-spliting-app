@@ -2,7 +2,7 @@ import math
 
 
 def get_amount_due ():
-	
+	#crgrghetrh
 	while True:
 		try: 
 			total = float(input("Enter total: "))
